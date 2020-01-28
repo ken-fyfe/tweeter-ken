@@ -1,0 +1,24 @@
+.new-tweet {
+  left: 5%;
+  right: 5%;
+}
+
+.text-input {
+  width:  100%;
+  resize: none;
+  border: none;
+  background-color: #f4f1ec;
+  border-bottom: 3px solid black;
+}
+
+.tweet-button {
+  float: left;
+  font-family: 'Bungee', cursive;
+  background-color: #4055a1;
+  color: #FFFFFF;
+}
+
+.counter {
+  font-family: 'Bungee', cursive;
+  float: right;
+}

@@ -30,5 +30,6 @@ const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 app.use("/tweets", tweetsRoutes);
 
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  const dateTime = new Date().toLocaleString('en-US', {timeZone: 'America/Edmonton'});
+  console.log(`Example app listening on port ${PORT}. Started at ${dateTime}.`);
 });

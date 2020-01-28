@@ -1,0 +1,19 @@
+nav {
+  background-color: #4055a1;
+  height: 120px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  color: #ffffff;
+  padding: 1.5em;
+}
+
+#tweeter {
+  float: left;
+}
+
+#new-tweet {
+  float: right;
+}
