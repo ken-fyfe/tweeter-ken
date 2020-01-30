@@ -1,9 +1,15 @@
-.new-tweet {
+/*
+. class;
+# id;
+name HTML tag
+*/
+
+form {
   left: 5%;
   right: 5%;
 }
 
-.text-input {
+textarea {
   width:  100%;
   resize: none;
   border: none;
@@ -11,14 +17,14 @@
   border-bottom: 3px solid black;
 }
 
-.tweet-button {
+input {
   float: left;
   font-family: 'Bungee', cursive;
   background-color: #4055a1;
   color: #FFFFFF;
 }
 
-.counter {
+#numChar {
   font-family: 'Bungee', cursive;
   float: right;
 }

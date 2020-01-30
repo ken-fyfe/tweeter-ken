@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta Information -->
+    <title>Tweeter - Home Page</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+
+    <!-- External Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:300,300i,700i&display=swap" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+
+    <!-- wise to put this at the end of the body so that you are not blocking the loading of the main HTML file -->
+
+    <!-- External JS -->
+    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
+    <style>
+      /* http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+       * https://css-tricks.com/international-box-sizing-awareness-day/
+        * Do not modify these two selectors, please
+ */
+      html {
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+      /*
+      . class;
+      # id;
+      name HTML tag
+      */
+      #outermost-grid {
+        display: grid;
+        grid-template-rows: 120px 1fr;
+        grid-template-columns: 1fr;
+        height: 100vh;
+      }
+
+      nav {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        background-color: #4055a1;
+        color: #ffffff;
+        padding: 1.5em;
+      }
+
+      #Tweeter {
+        font-family: 'Bungee', cursive;
+      }
+
+      main {
+        display: grid;
+        grid-template-rows: 400px 1fr;
+        grid-template-columns: 1fr;
+        overflow: auto; /* makes this section scrollable */
+        /* display flex; align-self: center; */
+      }
+
+      main header {
+        background-color: #d89821;
+        background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+        color: white;
+        display: grid;
+        grid-template-rows: 256px 1fr;
+        grid-template-columns: 1fr;
+        place-items: center;
+      }
+
+      #tweet-section {
+        display: grid;
+        width: 90%;
+        grid-template-rows: 75px 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        background-color: #f4f1ec;
+      }
+
+      form {
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        grid-template-columns: 1fr 1fr;
+        /* border: 1px  solid black; */
+      }
+
+      form textarea {
+        grid-column-start: 1; grid-column-end: 3;
+        width:  100%;
+        resize: none;
+        border: none;
+        background-color: #f4f1ec;
+        border-bottom: 3px solid black;
+      }
+
+      form input {
+        font-family: 'Bungee', cursive;
+        background-color: #4055a1;
+        color: #FFFFFF;
+      }
+
+      #counter {
+        font-family: 'Bungee', cursive;
+        /* display: grid;
+        justify-content: right;
+        align-items: center; */
+      }
+
+      #tweet-section article {
+        display: grid;
+        grid-template-rows: 50px 70px 30px;
+        border: 2px solid black;
+        margin: 1px;
+      }
+
+      #tweet-section article header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 2px solid red;
+      }
+
+      #tweet-section article section {
+        border: 2px solid blue;
+      }
+
+      #tweet-section article footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="outermost-grid">
+      <nav>
+        <div></div><div></div>
+        <div id="Tweeter">Tweeter</div>
+        <div style="justify-self: end"><strong>Write</strong> a new Tweet</div>
+      </nav>
+      <main>
+        <header>
+          <img src="images/profile-hex.png">
+          <div><strong>Ken</strong> Fyfe</div>
+        </header>
+        <div id="tweet-section">
+          <form action="/tweets" method="POST">
+            <textarea rows="1" name="text" placeholder="What are you humming about?"></textarea>
+            <div><input type="submit" value="Tweet"></div>
+            <div><span id="counter"><div id="numChar"></div></span></div>
+          </form>
+          <article>
+            <header>
+              <div>Image Name</div>
+              <div style="justify-self: end">handle</div>
+            </header>
+            <section>
+              this might contain tweets one day!
+            </section>
+            <footer>
+              <div>10 days ago</div>
+              <div style="justify-self: end">@ $ &</div>
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

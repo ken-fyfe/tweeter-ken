@@ -29,7 +29,7 @@ body {
   clear: both;
 }
 
-.container {
+main {
   position: absolute;
   top: 550px;
   left: 5%;

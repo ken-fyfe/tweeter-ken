@@ -15,12 +15,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-
-    <!-- External JS -->
-    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
   </head>
 
   <body>
@@ -29,34 +24,28 @@
       <span id="tweeter">tweeter</span>
       <span id="new-tweet"><strong>Write</strong> a new tweet</span>
     </nav>
-    <header>
-      <div>
-          <img class="centeredImage" src="/images/profile-hex.png">
-      </div>
-      <br>
-      <div>
-          <h2 class="centeredText">Your Name</h2>
+    <header id="icon-name">
+      <img class="centeredImage" src="/images/profile-hex.png">
+      <div class="centeredText">
+          <strong>Ken</strong> Fyfe
       </div>
     </header>
     <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form action="/tweets" method="POST">
-          <textarea class="text-input" rows="1" name="text" placeholder="What are you humming about?"></textarea>
-          <input class="tweet-button" type="submit" value="Tweet">
-          <span class="counter">140</span>
-        </form>
+    <main>
+      <form action="/tweets" method="POST">
+        <textarea rows="1" name="text" placeholder="What are you humming about?"></textarea>
+        <input type="submit" value="Tweet">
+        <span><div id="numChar"></div></span>
+      </form>
+      <section id="tweet-section">
+        <!-- Tweets will get put in here via jQuery functions -->
       </section>
-      <div class="main-body">
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br><br>
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br><br>
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br><br>
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      </div>
     </main>
+
+    <!-- External JS -->
+    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </body>
 </html>
