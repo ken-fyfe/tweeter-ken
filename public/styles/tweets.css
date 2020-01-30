@@ -2,13 +2,22 @@
   left: 5%;
   right: 5%;
   background-color: #f4f1ec;
-  border: 3px solid black;
   clear: both;
 }
 
+form {
+  margin-bottom: 50px;
+}
 article {
   display: grid;
-  grid-template-rows: 50px 50px 50px;
+  grid-template-rows: 75px 50px 40px;
+  grid-row-gap: 1ch;
+  border: 3px  solid black;
+  margin-bottom: 20px;
+}
+
+article header {
+  overflow: auto;
 }
 
 article:hover {
@@ -16,8 +25,18 @@ article:hover {
 }
 
 main #tweet-section article header {
-  border: 3px solid red;
-  /* display: float;
-  clear: both; */
-  /* background-color: #f4f1ec; */
+  text-align: right;
+}
+
+.name {
+  align-self: center;
+}
+.handle {
+  position: absolute;
+  right: 0;
+  align-self: center;
+}
+
+main #tweet-section article footer {
+  border-top: 3px solid black;
 }

@@ -4,6 +4,22 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// look at example listed on: https://www.airpair.com/js/jquery-ajax-post-tutorial
+$(function() {
+  $('#form-submit').on('click', function () {
+    event.preventDefault();
+    console.log('Button clicked, performing ajax call...');
+    // $.ajax({
+    //   url: '/tweets',
+    //   method: 'POST',
+    //   data:  ,
+    //   success: (res) => })
+    // .then(function (morePostsHtml) {
+    //   console.log('Success: ', morePostsHtml);
+    // });
+  });
+});
+
 // Fake data taken from initial-tweets.json
 const data = [
   {
@@ -46,8 +62,9 @@ const createTweetElement = function(userInfo) {
   const elementHTML = `
     <article id="tweet">
       <header style="display: flex; clear: both">
-        <div><img src="${imgAvatar}" & ${name}</div>
-        <div style="align-content: right;">${handle}</div>
+        <img src="${imgAvatar}">
+        <span class="name">${name}</span>
+        <span class="handle">${handle}</span>
       </header>
       <section>
         ${tweet}
