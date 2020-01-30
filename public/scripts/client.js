@@ -6,17 +6,25 @@
 
 // look at example listed on: https://www.airpair.com/js/jquery-ajax-post-tutorial
 $(function() {
-  $('#form-submit').on('click', function () {
+  $('#form-submit').on('click', function() {
     event.preventDefault();
-    console.log('Button clicked, performing ajax call...');
-    // $.ajax({
-    //   url: '/tweets',
-    //   method: 'POST',
-    //   data:  ,
-    //   success: (res) => })
-    // .then(function (morePostsHtml) {
-    //   console.log('Success: ', morePostsHtml);
-    // });
+    const $postedTweet = $("textarea").val();
+    console.log($('form').serialize());
+    if ($postedTweet.length > 0) {
+      console.log('tweet greater than length zero');
+      $.ajax({
+        url: '/tweets',
+        method: 'POST',
+        data:  $('form').serialize(),
+        success: (res) => {
+          console.log("user", res)
+          $('#tweet-section').append(createTweetElement(res))
+        },
+        error: function(){alert('error')}
+      })
+    } else {
+      console.log('Error - tweet of zero lengtth');
+    }
   });
 });
 
