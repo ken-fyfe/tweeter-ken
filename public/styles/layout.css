@@ -36,6 +36,10 @@ main {
   right: 5%;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+.error-message {
+  color: black;
+  background-color: #FFBABA;
+  border: solid #D8000C;
+  align-self: center;
+  margin-bottom: 10px;
+}

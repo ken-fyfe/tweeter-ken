@@ -1,65 +1,67 @@
 /*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
+ * Client-side JS
  */
 
-// look at example listed on: https://www.airpair.com/js/jquery-ajax-post-tutorial
+// display error message - press any key or mouse click to clear
+const displayError = function(errorMessage) {
+  $('main').prepend(`<div class="error-message"><strong>Error:</strong> ${errorMessage}</div>`);
+  // detect keyboard or mouse events
+  $('body').on('click keypress', function() {
+    $('.error-message').hide();
+  });
+};
+
+// AJAX post function to put tweets into the database
 $(function() {
   $('#form-submit').on('click', function() {
+    // the following is to 'escape' strings to prevent XSS attacks
+    const escape =  function(str) {
+      let div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
     event.preventDefault();
-    const $postedTweet = $("textarea").val();
-    console.log($('form').serialize());
-    if ($postedTweet.length > 0) {
-      console.log('tweet greater than length zero');
+    const maxLengthTweet = 140;
+    const postedTweet = $('textarea').val();
+    const safeText =  `<p>${escape(postedTweet)}</p>`;
+    const tweetLength = safeText.length;
+    if ((safeText.length === 0) || (safeText === null)) {
+      alert('Error - can not post a tweet of zero length');
+    } else if (tweetLength > maxLengthTweet) {
+      alert(`Error - tweet can not be over ${maxLengthTweet} characters in length`);
+    } else {
       $.ajax({
         url: '/tweets',
-        method: 'POST',
-        data:  $('form').serialize(),
+        method: 'post',
+        data: $('form').serialize(),
         success: (res) => {
-          console.log("user", res)
-          $('#tweet-section').append(createTweetElement(res))
+          $('#tweet-section').prepend(createTweetElement(res));
+          $('form').trigger('reset'); // clears the tweet field
         },
-        error: function(){alert('error')}
-      })
-    } else {
-      console.log('Error - tweet of zero lengtth');
+        error: function() {
+          alert('Error: unsuccessful POST of tweet');
+        }
+      });
     }
   });
 });
 
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense, donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
-
-const daysAgo = function(timeRecorded) {
+// read in UTC time, determines current time and returns how long ago it took (days, hours, minutes, seconds)
+const howLongAgo = function(timeRecorded) {
   const currentTime = Date.now();
-  const timeDiff = currentTime - timeRecorded;
-  const numDays = timeDiff / (1000 * 24 * 3600);
-  return String(Math.round(numDays)) + ' days ago';
+  const timeDiff = (currentTime - timeRecorded) / 1000;
+  if (timeDiff < 60) {
+    return String(Math.round(timeDiff)) + ' seconds ago';
+  } else if (timeDiff < 3600) {
+    return String(Math.round(timeDiff / 60)) + ' minutes ago';
+  } else if (timeDiff < (24 * 3600)) {
+    return String(Math.round(timeDiff / 3600)) + ' hours ago';
+  } else {
+    return String(Math.round(timeDiff / (24 * 3600))) + ' days ago';
+  }
 };
 
+// formats the tweet to get injected into the body
 const createTweetElement = function(userInfo) {
   const imgAvatar = userInfo.user.avatars;
   const name = userInfo.user.name;
@@ -78,13 +80,14 @@ const createTweetElement = function(userInfo) {
         ${tweet}
       </section>
       <footer style="display: flex; clear: both">
-        <div>${daysAgo(rawTime)}</div>
+        <div>${howLongAgo(rawTime)}</div>
         <div>@ $ &</div>
       </footer>
     </article>`;
   return elementHTML;
 };
 
+// loops through the tweets to get injected
 const renderTweets = function(tweets) {
   for (const tweet in tweets) {
     const formattedTweet = createTweetElement(tweets[tweet]);
@@ -92,6 +95,33 @@ const renderTweets = function(tweets) {
   }
 };
 
-$("document").ready(function() {
-  renderTweets(data);
+// use AJAX to get tweets from the server
+const loadtweets = function() {
+  $.ajax({
+    url: '/tweets',
+    method: 'GET',
+    contentType: 'json',
+    success: (res) => {
+      renderTweets(res);
+    },
+    error: function() {
+      alert('Error: unsuccessful POST of tweet');
+    }
+  });
+};
+
+// open the tweeter entry region and toggle the double arrows up/down
+const openTweetRegion =  function(arrow) {
+  // swap up arrow and down arrow images
+  let swapImage;
+  ($(arrow).attr('src') === $(arrow).attr('up-arrows')) ? swapImage = 'down-arrows' : swapImage = 'up-arrows';
+  $(arrow).attr('src', $(arrow).attr(swapImage));
+  // toggle the tweet input form
+  $('form').toggle();
+};
+
+// loads the current stored tweets and hides the tweet input region
+$('document').ready(function() {
+  $('form').hide();
+  loadtweets();
 });

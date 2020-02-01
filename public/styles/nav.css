@@ -17,3 +17,10 @@ nav {
 #new-tweet {
   float: right;
 }
+
+#double-down {
+  float: right;
+}
+#double-down.hover {
+  background-position: -25px 0px
+}

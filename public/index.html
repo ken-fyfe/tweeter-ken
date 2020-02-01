@@ -23,11 +23,19 @@
     <nav>
       <span id="tweeter">tweeter</span>
       <span id="new-tweet"><strong>Write</strong> a new tweet</span>
+      <img id="double-down"
+        onclick="openTweetRegion(this)"
+        width="20"
+        height="20"
+        src="images/double_down_arrows.png"
+        up-arrows="images/double_up_arrows.png"
+        down-arrows="images/double_down_arrows.png"
+      >
     </nav>
     <header id="icon-name">
-      <img class="centeredImage" src="/images/profile-hex.png">
+      <img class="centeredImage" src="/images/profile-hex-boy.png">
       <div class="centeredText">
-          <strong>Ken</strong> Fyfe
+          <strong>Ken</strong>Fyfe
       </div>
     </header>
     <!-- Page-specific (main) content here -->
@@ -38,7 +46,6 @@
         <span><div id="numChar"></div></span>
       </form>
       <section id="tweet-section">
-        <!-- Tweets will get put in here via jQuery functions -->
       </section>
     </main>
 

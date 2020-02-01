@@ -8,6 +8,8 @@ $(document).ready(function() {
     $('#numChar').text(numRemaining);
     if (numRemaining < 0) {
       $('#numChar').css('color', 'red');
+    } else {
+      $('#numChar').css('color', 'black');
     }
   });
 });
