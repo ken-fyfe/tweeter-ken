@@ -16,13 +16,16 @@
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+
+    <!-- favicon loading -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   </head>
 
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
       <span id="tweeter">tweeter</span>
-      <span id="new-tweet"><strong>Write</strong> a new tweet</span>
+      <span id="new-tweet"><strong>Write</strong> a new tweet<br>
       <img id="double-down"
         onclick="openTweetRegion(this)"
         width="20"
@@ -31,14 +34,14 @@
         up-arrows="images/double_up_arrows.png"
         down-arrows="images/double_down_arrows.png"
       >
+    </span>
     </nav>
     <header id="icon-name">
       <img class="centeredImage" src="/images/profile-hex-boy.png">
       <div class="centeredText">
-          <strong>Ken</strong>Fyfe
+          <strong>Ken</strong>&nbspFyfe
       </div>
     </header>
-    <!-- Page-specific (main) content here -->
     <main>
       <form action="/tweets" method="POST">
         <textarea rows="1" name="tweetText" placeholder="What are you humming about?"></textarea>

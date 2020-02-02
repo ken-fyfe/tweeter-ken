@@ -26,9 +26,9 @@ $(function() {
     const safeText =  `<p>${escape(postedTweet)}</p>`;
     const tweetLength = safeText.length;
     if ((safeText.length === 0) || (safeText === null)) {
-      alert('Error - can not post a tweet of zero length');
+      displayError('Can not post a tweet of zero length');
     } else if (tweetLength > maxLengthTweet) {
-      alert(`Error - tweet can not be over ${maxLengthTweet} characters in length`);
+      displayError(`Tweet can not be over ${maxLengthTweet} characters in length`);
     } else {
       $.ajax({
         url: '/tweets',
@@ -38,9 +38,7 @@ $(function() {
           $('#tweet-section').prepend(createTweetElement(res));
           $('form').trigger('reset'); // clears the tweet field
         },
-        error: function() {
-          alert('Error: unsuccessful POST of tweet');
-        }
+        error: () => displayError('Unsuccessful POST of tweet')
       });
     }
   });
@@ -71,17 +69,16 @@ const createTweetElement = function(userInfo) {
 
   const elementHTML = `
     <article id="tweet">
-      <header style="display: flex; clear: both">
-        <img src="${imgAvatar}">
-        <span class="name">${name}</span>
+      <header>
+        <span class="name"><img src="${imgAvatar}">${name}</span>
         <span class="handle">${handle}</span>
       </header>
       <section>
         ${tweet}
       </section>
-      <footer style="display: flex; clear: both">
+      <footer>
         <div>${howLongAgo(rawTime)}</div>
-        <div>@ $ &</div>
+        <div>&#9873 &nbsp &#9853; &nbsp &hearts;</div>
       </footer>
     </article>`;
   return elementHTML;
@@ -104,9 +101,7 @@ const loadtweets = function() {
     success: (res) => {
       renderTweets(res);
     },
-    error: function() {
-      alert('Error: unsuccessful POST of tweet');
-    }
+    error: () => displayError('Unsuccessful POST of tweet')
   });
 };
 

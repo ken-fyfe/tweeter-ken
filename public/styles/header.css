@@ -4,6 +4,7 @@
   position: relative;
   top: 120px;
   height: 400px;
+  display: grid;
 }
 
 .centeredImage {
@@ -14,4 +15,6 @@
 .centeredText {
   display: flex;
   justify-content: center;
+  color: #ffffff;
+
 }

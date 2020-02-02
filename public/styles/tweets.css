@@ -8,35 +8,43 @@
 form {
   margin-bottom: 50px;
 }
+
 article {
   display: grid;
-  grid-template-rows: 75px 50px 40px;
+  grid-template-rows: 70px 40px 40px;
   grid-row-gap: 1ch;
   border: 3px  solid black;
   margin-bottom: 20px;
+  padding: 0.5em
 }
 
 article header {
-  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
+}
+
+article footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 3px solid black;
+  font-size: 12pt;
+  padding: 5px;
 }
 
 article:hover {
   box-shadow: 7px 7px #888888;
 }
 
-main #tweet-section article header {
-  text-align: right;
-}
-
 .name {
-  align-self: center;
-}
-.handle {
-  position: absolute;
-  right: 0;
-  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-main #tweet-section article footer {
-  border-top: 3px solid black;
+.handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
