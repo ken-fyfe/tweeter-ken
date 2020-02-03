@@ -16,5 +16,9 @@
   display: flex;
   justify-content: center;
   color: #ffffff;
+  font-size: 36pt;
+}
 
+#first-name {
+  font-weight: bold;
 }

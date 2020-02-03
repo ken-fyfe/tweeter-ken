@@ -48,3 +48,69 @@ article:hover {
   align-items: center;
   justify-content: center;
 }
+
+/* event.preventDefault();
+const maxLengthTweet = 140;
+const postedTweet = $('textarea').val();
+const tweetLength= postedTweet.length;
+if ((tweetLength === 0) || (postedTweet === null)) { // || safeText.indexOf('<p>') === 0) {
+  displayError('Can not post a tweet of zero length');
+} else if (tweetLength > maxLengthTweet) {
+    displayError(`Tweet can not be over ${maxLengthTweet} characters in length`);
+} else {
+  const safeText =  `<p>${escape(postedTweet)}</p>`;
+  console.log('safeText :', safeText);
+  $.ajax({
+    url: '/tweets',
+    method: 'post',
+    data: $('form').serialize(),
+    success: (res) => {
+      $('#tweet-section').prepend(createTweetElement(res));
+      $('form').trigger('reset'); // clears the tweet field
+    },
+    error: () => displayError('Unsuccessful POST of tweet')
+  });
+}
+}); */
+
+/* // AJAX post function to put tweets into the database
+$(function() {
+  $('#form-submit').on('click', function() {
+    // the following is to 'escape' strings to prevent XSS attacks
+    const escape =  function(str) {
+      let div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
+
+    event.preventDefault();
+    const maxLengthTweet = 140;
+    const  postedTweet = $('textarea').val();
+    console.log('postTweet (after button press) :', postedTweet);
+    const tweetLength = postedTweet.length;
+    console.log('tweetLength :', tweetLength);
+    if ((tweetLength === 0) || (postedTweet === null)) {
+      displayError('Can not post a tweet of zero length');
+    } else if (tweetLength > maxLengthTweet) {
+      displayError(`Tweet can not be over ${maxLengthTweet} characters in length`);
+    } else {
+      const safeTweet =  `<p>${escape(postedTweet)}</p>`; // to prevent XSS attack
+      console.log('postedTweet (inside else) :', safeTweet);
+      console.log('postedTweet.indexOf(<p>&lt) :', safeTweet.indexOf('<p>&lt'));
+      if (safeTweet.indexOf('<p>&lt') <= 0) {
+        $.ajax({
+          url: '/tweets',
+          method: 'post',
+          data: $('form').serialize(), // input data is from variable 'safeTweet' as defined in HTML form specification
+          success: (res) => {
+            $('#tweet-section').prepend(createTweetElement(res));
+          },
+          error: () => displayError('Unsuccessful POST of tweet')
+        });
+      } else {
+        displayError('Not posted as contains questionable content');
+      }
+      $('form').trigger('reset'); // clears the tweet field
+    }
+  });
+}); */
